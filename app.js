@@ -23,12 +23,29 @@ app.get("/:number", async (req, res) => {
     const response = await fetch(url).then(
         res => res.json()
     ).then(data => data.results)
-    .then(results => results[number].name)
+        
+    //.then(results => results[number].name)
+    .then(results => results[number])
     .catch(e => {
         console.error
     })
     console.log("response: ", response)
-    res.json("Nombre: " + response)
+    //res.json("Objeto: " + response.name)
+
+    try {
+        res.json(  
+                    {
+                        "name: " : response.name,
+                        "status: " : response.status,
+                        "gender: " : response.gender,
+                        "species: " : response.species,
+                    }
+                )
+              
+        } catch (e) {
+            console.log("Something went wrong", e);
+        }
+    
 })
 
 
