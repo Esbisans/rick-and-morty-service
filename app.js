@@ -25,13 +25,14 @@ app.get("/:number", async (req, res) => {
     ).then(data => data.results)
         
     //.then(results => results[number].name)
-    .then(results => results[number])
+    .then(results => results[number].name)
     .catch(e => {
         console.error
     })
     console.log("response: ", response)
-    //res.json("Objeto: " + response)
+    res.json("persona: " + response)
 
+    /*
     try {
         res.json(  
                     {
@@ -45,6 +46,7 @@ app.get("/:number", async (req, res) => {
         } catch (e) {
             console.error;
         }
+    */
     
 })
 
