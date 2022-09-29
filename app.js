@@ -30,7 +30,7 @@ app.get("/:number", async (req, res) => {
         console.error
     })
     console.log("response: ", response)
-    //res.json("Objeto: " + response.name)
+    //res.json("Objeto: " + response)
 
     try {
         res.json(  
@@ -43,7 +43,7 @@ app.get("/:number", async (req, res) => {
                 )
               
         } catch (e) {
-            console.log("Something went wrong", e);
+            console.error;
         }
     
 })
