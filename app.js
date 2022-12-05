@@ -2,6 +2,7 @@ const express = require("express");
 const fetch = require("node-fetch")
 
 
+
 const PORT = process.env.PORT || 3003;
 const app = express();
 
@@ -17,6 +18,11 @@ fetch(url).then(
 )
 
 */
+
+app.get("/", async (req, res) => {
+    res.send("Api de personajes, para usar use un número en la url ejemplo: url/12")
+})
+
 app.get("/:number", async (req, res) => {
     const url = "https://rickandmortyapi.com/api/character"
     var number = req.params.number
@@ -25,29 +31,29 @@ app.get("/:number", async (req, res) => {
     ).then(data => data.results)
         
     //.then(results => results[number].name)
+
+    /*
     .then(results => results[number].name)
     .catch(e => {
         console.error
     })
     console.log("response: ", response)
     res.json("persona: " + response)
-
-    /*
-    try {
-        res.json(  
-                    {
-                        "name: " : response.name,
-                        "status: " : response.status,
-                        "gender: " : response.gender,
-                        "species: " : response.species,
-                    }
-                )
-              
-        } catch (e) {
-            console.error;
-        }
     */
-    
+
+    .then(results => 
+      results[number]  
+    ).catch(e => {console.error})
+
+    const resobj = {
+                    name: response?.name,
+                    status: response?.status,
+                    gender: response?.gender,
+                    species: response?.species
+                    }  
+
+    console.log(resobj);
+    res.json(resobj);
 })
 
 
